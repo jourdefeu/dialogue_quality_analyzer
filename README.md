@@ -1,5 +1,4 @@
-# AdSkill | AI / ML Inetgrator | Test task
-Dialogue Quality Analyzer
+# Dialogue Quality Analyzer
 
 ## Выбор инструмента
 Использована модель GPT‑4o‑mini через OpenAI API для анализа диалогов. 
