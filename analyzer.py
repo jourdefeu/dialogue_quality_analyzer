@@ -38,8 +38,15 @@ def analyze_dialogue(messages: List[Dict[str, str]]) -> Dict[str, Any]:
         "section_a": a_anchors(dialogue_text),
         "section_b": b_objections(dialogue_text)
     }
-    return analyzer
 
+    for obj in analyzer["section_b"].get("objections_found", []):
+        obj["objection_type"] = obj["objection_type"].capitalize()
+        obj["manager_actions"] = [
+            action[0].upper() + action[1:] if action else action
+            for action in obj.get("manager_actions", [])
+        ]
+
+    return analyzer
 
 def a_anchors(msgs):
 
