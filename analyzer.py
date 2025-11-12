@@ -4,6 +4,10 @@ import re
 from dotenv import load_dotenv
 from typing import List, Dict, Any
 from openai import OpenAI
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -127,7 +131,7 @@ if __name__ == "__main__":
     results = []
 
     for i, dialogue in enumerate(data, 1):
-        print(f"Анализ диалога {i}/{len(data)}...")
+        logger.info(f"Анализ диалога {i}/{len(data)}...")
         res = analyze_dialogue(dialogue["messages"])
         results.append({
             "dialogue_id": dialogue.get("dialogue_id", f"dlg_{i}"),
@@ -137,4 +141,5 @@ if __name__ == "__main__":
     with open("analysis_results.json", "w", encoding="utf-8") as f:
         json.dump(results, f, ensure_ascii=False, indent=2)
 
-    print("Анализ завершён. Результаты сохранены в analysis_results.json")
+    logger.info(json.dumps(results, ensure_ascii=False, indent=2))
+    logger.info("Анализ завершён. Результаты сохранены в analysis_results.json")
