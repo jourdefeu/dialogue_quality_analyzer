@@ -6,4 +6,15 @@
 
 
 
-Java 17
+## Инструкция по запуску
+- Создать и активировать виртуальную среду
+- Установить необходимые зависимости из `requirements.txt`
+```
+pip install -r requirements.txt
+```
+- Запустить скрипт `analyzer.py`
+```
+python analyzer.py
+```
+
+Результат будет в консоли и сохранится в файл `analysis_results.json`
